@@ -50,7 +50,7 @@ public class DbManager {
                 authors.add(new Author(result.getInt(1), result.getString(2), result.getString(3)));
             }
             System.out.println(sql + ";");
-            for (Author e: authors) {
+            for (Author e : authors) {
                 System.out.println(e);
             }
         } catch (SQLException e) {
@@ -70,7 +70,7 @@ public class DbManager {
                                 result.getString(3), result.getString(4)));
             }
             System.out.println(sql + ";");
-            for (Book e: books) {
+            for (Book e : books) {
                 System.out.println(e);
             }
         } catch (SQLException e) {
