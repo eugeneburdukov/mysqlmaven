@@ -14,6 +14,10 @@ public class Main {
 
         dbManager.getBookResult();
 
+        System.out.println();
+
+        dbManager.getJOIN();
+
 
     }
 }
