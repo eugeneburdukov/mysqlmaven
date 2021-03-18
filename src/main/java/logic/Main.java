@@ -2,21 +2,18 @@ package logic;
 
 public class Main {
     public static void main(String[] args) {
-        DbManager dbManager = new DbManager();
-        dbManager.getConnection();
-        System.out.println(dbManager.isConnected());
+        Queries queries = new Queries();
 
+        System.out.println(queries.isConnected());
         System.out.println();
 
-        dbManager.getAuthorResult();
-
+        queries.getAuthorResult();
         System.out.println();
 
-        dbManager.getBookResult();
-
+        queries.getBookResult();
         System.out.println();
 
-        dbManager.getJoinTableResult();
+        queries.getJoinTableResult();
 
 
     }

@@ -1,7 +1,6 @@
 package logic;
 
 import java.sql.*;
-import java.util.ArrayList;
 
 public class DbManager {
     Connection connection;
@@ -16,9 +15,9 @@ public class DbManager {
 
         //mysql -h'avf01.mysql.tools' -u'avf01_library' -p'C96%6-Ljbk' avf01_library
         String serverName = "avf01.mysql.tools";
-        String mydatabase = "avf01_library";
+        String databaseName = "avf01_library";
         String ignoreSSL = "?verifyServerCertificate=false&useSSL=true";
-        String url = "jdbc:mysql://" + serverName + "/" + mydatabase + ignoreSSL;
+        String url = "jdbc:mysql://" + serverName + "/" + databaseName + ignoreSSL;
 
         String username = "avf01_library";
         String password = "C96%6-Ljbk";
@@ -30,80 +29,4 @@ public class DbManager {
         }
         return null;
     }
-
-    public String isConnected() {
-        Connection connection = getConnection();
-        if (connection != null) {
-            return "Connection is successfull!";
-        }
-
-        return "Connection Error! Please review login details!";
-    }
-
-    public void getAuthorResult() {
-        ArrayList<Author> authors = new ArrayList<>();
-        try {
-            Statement statement = connection.createStatement();
-            String sql = "select * FROM authors";
-            ResultSet result = statement.executeQuery(sql);
-            while (result.next()) {
-                authors.add(new Author(result.getInt(1), result.getString(2), result.getString(3)));
-            }
-            System.out.println(sql + ";");
-            for (Author e : authors) {
-                System.out.println(e);
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public void getBookResult() {
-        ArrayList<Book> books = new ArrayList<>();
-        try {
-            Statement statement = connection.createStatement();
-            String sql = "select * FROM books";
-            ResultSet result = statement.executeQuery(sql);
-            while (result.next()) {
-                books.add
-                        (new Book(result.getInt(1), result.getString(2),
-                                result.getString(3), result.getString(4)));
-            }
-            System.out.println(sql + ";");
-            for (Book e : books) {
-                System.out.println(e);
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public void getJoinTableResult() {
-        try {
-            Statement statement = connection.createStatement();
-            String sql = "select books.title, authors.name " +
-                    " from authors join books on books.author = authors.id where authors.country = 'USA'";
-            ResultSet result = statement.executeQuery(sql);
-            System.out.println(sql + ";");
-            while (result.next()) {
-                String title = result.getString("title");
-                String name = result.getString("name");
-
-                System.out.println(" | " + title + " | " + name + " | ");
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-
-    }
-
-//    public List<Author> getAuthors() {
-//        List<Author> authors = new ArrayList<>();
-//        Connection connection = getConnection();
-//        if (connection != null) {
-//            System.out.println(connection);
-//        }
-//
-//        return authors;
-//    }
 }
