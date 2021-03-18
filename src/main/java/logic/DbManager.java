@@ -78,10 +78,11 @@ public class DbManager {
         }
     }
 
-    public void getJOIN() {
+    public void getJoinTableResult() {
         try {
             Statement statement = connection.createStatement();
-            String sql = "select books.title, authors.name from authors join books on books.author = authors.id where authors.country = 'USA'";
+            String sql = "select books.title, authors.name " +
+                    " from authors join books on books.author = authors.id where authors.country = 'USA'";
             ResultSet result = statement.executeQuery(sql);
             System.out.println(sql + ";");
             while (result.next()) {

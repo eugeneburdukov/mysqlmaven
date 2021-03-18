@@ -16,7 +16,7 @@ public class Main {
 
         System.out.println();
 
-        dbManager.getJOIN();
+        dbManager.getJoinTableResult();
 
 
     }
