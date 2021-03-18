@@ -59,7 +59,7 @@ public class Queries extends DbManager{
         try {
             Statement statement = connection.createStatement();
             String sql = "select books.title, authors.name " +
-                    " from authors join books on books.author = authors.id where authors.country = 'USA'";
+                    "from authors join books on books.author = authors.id where authors.country = 'USA'";
             ResultSet result = statement.executeQuery(sql);
             System.out.println(sql + ";");
             while (result.next()) {
@@ -71,6 +71,30 @@ public class Queries extends DbManager{
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-
     }
+
+    public void createTable() {
+        try {
+            Statement statement = connection.createStatement();
+            String sql = "CREATE TABLE `TLDTYPES` (`Id` int(6) NOT NULL DEFAULT '0'," +
+                    " `Test` varchar(64) NOT NULL DEFAULT '') ENGINE=InnoDB;";
+            statement.executeUpdate(sql);
+            System.out.println(sql + ";");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void dropTable() {
+        try {
+            Statement statement = connection.createStatement();
+            String sql = "DROP TABLE TLDTYPES";
+            statement.execute(sql);
+            System.out.println(sql + ";");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
 }
