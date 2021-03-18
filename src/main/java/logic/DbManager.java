@@ -14,13 +14,12 @@ public class DbManager {
         }
 
         //mysql -h'avf01.mysql.tools' -u'avf01_library' -p'C96%6-Ljbk' avf01_library
-        String serverName = "avf01.mysql.tools";
-        String databaseName = "avf01_library";
-        String ignoreSSL = "?verifyServerCertificate=false&useSSL=true";
+        String serverName = ConnectionDetails.serverName;
+        String databaseName = ConnectionDetails.databaseName;
+        String ignoreSSL = ConnectionDetails.ignoreSSL;
         String url = "jdbc:mysql://" + serverName + "/" + databaseName + ignoreSSL;
-
-        String username = "avf01_library";
-        String password = "C96%6-Ljbk";
+        String username = ConnectionDetails.username;
+        String password = ConnectionDetails.password;
         try {
             connection = DriverManager.getConnection(url, username, password);
             return connection;
